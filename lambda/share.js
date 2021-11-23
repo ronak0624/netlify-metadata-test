@@ -5,7 +5,6 @@ exports.handler = async function (event, context) {
     var { headers } = event;
     let agent = headers["user-agent"];
     let query = headers["path"]
-    let title = query.replace("/", " ")
 
     console.log(agent)
     console.log(headers)
