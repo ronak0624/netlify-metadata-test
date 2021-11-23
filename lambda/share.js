@@ -4,7 +4,13 @@ const path = require('path')
 exports.handler = async function (event, context) {
     var { headers } = event;
     let agent = headers["user-agent"];
-    let title = event.headers?.["path"]?.split("/.netlify/functions/share")[1]?.split("/").join(" ").trim()
+    var title;
+    if(event.headers["path"]) {
+        title = event.headers["path"].split("/.netlify/functions/share")[1].split("/").join(" ").trim()
+    }
+
+    console.log(title)
+    console.log(agent)
 
     let message =
         `
