@@ -2,11 +2,11 @@ const fs = require('fs')
 const path = require('path')
 
 exports.handler = async function (event, context) {
-    var { headers } = event;
+    var { headers, path } = event;
     let agent = headers["user-agent"];
     var title;
-    if(event.headers["path"]) {
-        title = event.headers["path"].split("/.netlify/functions/share")[1].split("/").join(" ").trim()
+    if(path) {
+        title = path.split("/.netlify/functions/share")[1].split("/").join(" ").trim()
     }
 
     console.log(title)
