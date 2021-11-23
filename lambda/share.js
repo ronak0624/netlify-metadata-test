@@ -4,11 +4,7 @@ const path = require('path')
 exports.handler = async function (event, context) {
     var { headers } = event;
     let agent = headers["user-agent"];
-    let query = headers["path"]
-
-    console.log(agent)
-    console.log(headers)
-    console.log(event)
+    let title = event.headers?.["path"]?.split("/.netlify/functions/share")[1]?.split("/").join(" ").trim()
 
     let message =
         `
