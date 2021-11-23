@@ -5,12 +5,11 @@ exports.handler = async function (event, context) {
     var { headers, path } = event;
     var agent = headers["user-agent"];
     var title;
-    var query;
+    var query = path.split("/.netlify/functions/share")[1].split("/");
 
     if(agent.includes("+http")) {
         var title;
         if(path) {
-            query = path.split("/.netlify/functions/share")[1].split("/")
             title = query.join(" ").trim()
         }
     
