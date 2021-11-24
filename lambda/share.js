@@ -12,7 +12,7 @@ exports.handler = async function (event, context) {
 
     // If there is a query attached to the function call
     if (query.length > 1) {
-        let speakeasyURL = `${SPEAKEASY_VIDEO_PREFIX}${query.join("/")}`
+        let speakeasyURL = `${SPEAKEASY_VIDEO_PREFIX}/${query.join("/")}`
 
         // Check if user-agent is a bot, if so, request video information from server, else 
         if (agent.includes("+http")) {
