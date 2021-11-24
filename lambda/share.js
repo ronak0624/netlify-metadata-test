@@ -16,7 +16,6 @@ exports.handler = async function (event, context) {
 
         // Check if user-agent is a bot, if so, request video information from server, else 
         if (agent.includes("+http")) {
-            console.log(query)
             const speechUserId = query[1]
             const videoRecordingId = query[2]
             const customHeaders = {
@@ -30,7 +29,7 @@ exports.handler = async function (event, context) {
                 .then((result) => {
                     var title = result.name
 
-                    console.log(query)
+                    console.log(result)
 
                     let message =
                         `
@@ -60,6 +59,7 @@ exports.handler = async function (event, context) {
                         body: message
                     };
                 }).catch(err => {
+                    console.log(err)
                     return {
                         statusCode: 500,
                         body: err
