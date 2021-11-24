@@ -7,7 +7,6 @@ const SPEAKEASY_VIDEO_PREFIX = 'https://projectspeakeasy.com/app/journal'
 
 exports.handler = async function (event, context) {
     var { headers, path } = event;
-    console.log(event)
     var agent = headers["user-agent"];
     var query = path.split("/.netlify/functions/share/")[1].split("/");
 
