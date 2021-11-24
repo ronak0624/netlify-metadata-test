@@ -16,8 +16,6 @@ exports.handler = async function (event, context) {
 
         // Check if user-agent is a bot, if so, request video information from server, else 
         if (agent.includes("+http")) {
-            console.log(query)
-
             const speechUserId = query[1]
             const videoRecordingId = query[2]
             const customHeaders = {
@@ -61,13 +59,14 @@ exports.handler = async function (event, context) {
                         body: message
                     };
                 }).catch(err => {
-                    console.log(err)
+                    console.log("ERROR", err)
                     return {
                         statusCode: 500,
                         body: err
                     }
                 })
         } else {
+            console.log("ERROR")
             return {
                 statusCode: 302,
                 headers: {
@@ -76,9 +75,10 @@ exports.handler = async function (event, context) {
             }
         }
     } else {
+        console.log("ERROR")
         return {
             statusCode: 404,
-            body:  `
+            body: `
                 <!DOCTYPE html>
                 <html lang="en">
                     <head>
