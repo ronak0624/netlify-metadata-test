@@ -3,20 +3,21 @@ const axios = require('axios')
 const DESCRIPTION = 'Speakeasy: AI Powered Speech Coach'
 const RECORDING_API_ROUTE = 'https://us-central1-yoodli-web.cloudfunctions.net/api/videoRecording/'
 const INVALID_LINK_TITLE = 'Invalid Link - 404 Error'
+const SPEAKEASY_VIDEO_PREFIX = 'https://projectspeakeasy.com/app/journal'
 
 exports.handler = async function (event, context) {
     var { headers, path } = event;
     var agent = headers["user-agent"];
-    var query = path.split("/.netlify/functions/share")[1].split("/");
+    var query = path.split("/.netlify/functions/share/")[1].split("/");
 
     // If there is a query attached to the function call
     if (query.length > 1) {
-        let speakeasyURL = `https://projectspeakeasy.com/app/journal${query.join("/")}`
+        let speakeasyURL = `${SPEAKEASY_VIDEO_PREFIX}${query.join("/")}`
 
         // Check if user-agent is a bot, if so, request video information from server, else 
         if (agent.includes("+http")) {
             console.log(query)
-            const speechUserId = query[0]
+            const speechUserId = query[1]
             const videoRecordingId = query[2]
             const customHeaders = {
                 'Content-Type': 'application/json',
