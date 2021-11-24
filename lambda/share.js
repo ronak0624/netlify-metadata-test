@@ -8,7 +8,7 @@ const SPEAKEASY_VIDEO_PREFIX = 'https://projectspeakeasy.com/app/journal'
 exports.handler = async function (event, context) {
     var { headers, path } = event;
     var agent = headers["user-agent"];
-    var query = path.split("/.netlify/functions/share/")[1].split("/");
+    var query = path.split("/.netlify/functions/share/")[1]?.split("/");
 
     // If there is a query attached to the function call
     if (query.length > 1) {
@@ -22,11 +22,10 @@ exports.handler = async function (event, context) {
                 'Content-Type': 'application/json',
                 'Recorded-By-Id': `${speechUserId}`,
             }
-
+            console.log(event)
             axios.get(`${RECORDING_API_ROUTE}${videoRecordingId}`, {
                 headers: customHeaders
-            })
-                .then((result) => {
+            }).then((result) => {
                     var title = result.name
 
                     console.log(result)
